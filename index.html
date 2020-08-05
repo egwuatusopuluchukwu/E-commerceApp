@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>BgChange</title>
+
+   <style>
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+
+      :root {
+         --gap: 50px;
+      }
+
+      body {
+         font-family: comfortaa;
+         /* color: #2c2c2c; */
+         color: white;
+         font-size: 1.5em;
+      }
+
+      .wrapper {
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+         gap: var(--gap);
+         padding: var(--gap);
+         place-content: center;
+         background-color: rgba(240, 240, 240, 0.555);
+         width: 60vw;
+         height: 80vh;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         border-radius: 40px;
+      }
+
+      .items {
+         height: 70vh;
+         background-color: red;
+         border-radius: 25px;
+         display: grid;
+         place-content: center;
+      }
+
+
+      /* Now for the CSS */
+
+      @keyframes changeColor {
+         0%{
+            background-position: 0%;
+         }
+         100%{
+            background-position: 100%;
+         }
+      }
+
+      .css-sample{
+         background-image: linear-gradient(45deg, orange, red , rgb(90, 9, 128));
+         background-position: 0%;
+         background-size: 500%;
+         animation: changeColor 5s infinite alternate;
+      }
+   </style>
+</head>
+
+<body>
+   <div class="wrapper">
+      <div class="items js-sample">
+         <p>
+            Javascript One
+         </p>
+      </div>
+      <div class="items css-sample">
+         <p>
+            CSS One
+         </p>
+      </div>
+   </div>
+
+   <script>
+      const jsSample = document.querySelector(".js-sample");
+
+      const colors = [`red`, `green`, `blue`];
+
+
+      let x = 0;
+
+      setInterval(() => {
+
+         if (x > 2) { //resets it
+            x = 0
+            jsSample.style.backgroundColor = colors[x];
+         } else {
+            jsSample.style.backgroundColor = colors[x];
+         }
+         x++
+      }, 2000);
+   </script>
+</body>
+
+</html>
